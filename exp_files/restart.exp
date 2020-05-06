@@ -1,0 +1,20 @@
+#!/usr/bin/expect  
+set timeout 500
+
+set EXPSHELL [lindex $argv 0]
+set EXPHOST [lindex $argv 1]
+set EXPUSER [lindex $argv 2]
+set EXPPASS [lindex $argv 3]
+
+spawn ssh -l  $EXPUSER $EXPHOST 
+#expect {
+#  "(yes/no)?" {send "yes\r"; exp_continue}
+#  "*password:" {send "$EXPPASS\r"}
+#}
+send "sh $EXPSHELL \n"
+expect "即将重启服务*"
+send "y\n" 
+expect "*平台节点号为*"
+send "\03\n"
+send "exit\n"
+expect eof

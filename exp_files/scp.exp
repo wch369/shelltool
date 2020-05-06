@@ -1,0 +1,25 @@
+#!/usr/bin/expect
+set timeout 3600
+
+set EXPLOCALFILE [lindex $argv 0]
+set EXPREMOTEUSER [lindex $argv 1]
+set EXPREMOTEHOST [lindex $argv 2]
+set EXPREMOTEPASS [lindex $argv 3]
+set EXPREMOTEDIR [lindex $argv 4]
+
+spawn scp -r $EXPLOCALFILE $EXPREMOTEUSER@$EXPREMOTEHOST:$EXPREMOTEDIR
+expect {
+    "(yes/no)?" {send "yes\r"; exp_continue}
+    "*password:" {send "$EXPREMOTEPASS\r"
+    } "*100*" {
+    }
+}
+#expect {
+#   "*?assword*:*" {
+#       send -- "$passwd\n"
+#            expect "*?ast login*"
+#    } "*?ast login*" {
+#    }
+#}
+#expect "*100*"
+expect eof
