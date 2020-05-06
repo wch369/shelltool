@@ -17,32 +17,34 @@ local_dir=""
 case ${tag} in
     "1")
         #echo "sit"
-        remote_ip="192.168.235.100"
-        remote_user="upcbusi"
-        remote_passwd="upcbusi" 
-        local_dir="/mnt/f/learn/git/parseXmlSax/target/classes/"
-        remote_dir_pre="/app/upcbusi/src"
+        #TODO 替换具体值
+        remote_ip=""
+        remote_user=""
+        remote_passwd="" 
+        local_dir=""
+        remote_dir_pre=""
         ;;
     "2")
         #echo "uat"
-        remote_ip="192.168.235.100"
-        remote_user="upcicp"
-        remote_passwd="upcicp" 
-        local_dir="/mnt/f/learn/git/parseXmlSax/target/classes/"
-        remote_dir_pre="/app/upcicp/src"
+        remote_ip=""
+        remote_user=""
+        remote_passwd="" 
+        local_dir=""
+        remote_dir_pre=""
         ;;
     *)
         echo "未输入或输入非法，默认为sit"
         # tag设置过值后，无论是否为空都把+后面的内容替换给tag变量
         # tag=${tag+1}
-        ip="192.168.235.100"
-        user="upcicp"
+        ip=""
+        user=""
         ;;
 esac
 echo 上传地址为："${remote_user}"@"${remote_ip}"
 read -p "请输入文件上传个数: " count
 cd ${local_dir}
 echo 当前目录："`pwd`"
+#找到最新的修改的class文件
 file_list=`find . -type f -printf "%T@ %p\n"  | grep "\<class\>" | sort -n | tail -"${count}" | cut -f2 -d ' '`
 for f in $file_list
 do
