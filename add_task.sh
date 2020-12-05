@@ -57,7 +57,7 @@ do
             insert_cont="${insert_cont}${line}\\
 "
         else
-        insert_cont="${insert_cont}${line}"
+            insert_cont="${insert_cont}${line}"
         fi
     else
         insert_cont="${insert_cont}${line}\\
@@ -78,4 +78,3 @@ sed -i -e "s/\(<TaskTab RecNum=\"\)\([0-9]\{1,\}\)/\1${curr_rec}/" ${dest_file_n
 sed -i -e '3,${
     /^ *$/d
 }' ${dest_file_name}
-
